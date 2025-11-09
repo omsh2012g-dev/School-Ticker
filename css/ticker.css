@@ -1,0 +1,623 @@
+/* أنماط الشريط الإخباري المحسنة */
+.main-ticker-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    color: white;
+    min-height: 400px; /* ✨ إعادة الارتفاع الأدنى لضمان الشكل الجمالي */
+}
+
+.ticker-header-main {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.live-indicator {
+    background: #e53e3e;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.header-content h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.current-date {
+    background: rgba(255,255,255,0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* --- ✨ (تعديل) توسيط المحتوى الأفقي (الذي أصبح أقصر) --- */
+.ticker-content-wrapper {
+    padding: 1rem; /* تقليل الهامش الداخلي */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px; /* ارتفاع أدنى للصف الأفقي */
+}
+
+/* التصميمات الجديدة للشريط */
+.ticker-layout {
+    width: 100%;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* الباجات والأيقونات */
+.day-badge,
+.period-badge,
+.time-badge,
+.staff-badge-large {
+    background: rgba(255,255,255,0.2);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.period-badge-large {
+    background: rgba(255,255,255,0.2);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    font-size: 1.1rem;
+}
+
+.day-icon,
+.period-icon,
+.time-icon,
+.staff-icon {
+    font-size: 1.2rem;
+}
+
+.day-text,
+.period-text,
+.time-text,
+.staff-text {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.period-time {
+    background: rgba(255,255,255,0.3);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* التصميم الأفقي */
+.horizontal-layout .content-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* ✨ تقليل المسافة (لأنه لم يعد يوجد إحصائيات) */
+}
+
+/* --- ✨ (تم الحذف) ---
+(تم حذف أنماط .stats-grid-horizontal لأنها لم تعد موجودة)
+--- */
+
+/* المواد الأفقية */
+.horizontal-subjects-container {
+    width: 100%;
+}
+
+.horizontal-subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.horizontal-subject {
+    background: rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.horizontal-subject:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-3px);
+}
+
+.subject-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.subject-header .subject-icon {
+    font-size: 1.5rem;
+}
+
+.subject-header .subject-name {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.horizontal-subject .teacher-name {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.classes-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.classes-row .class-badge {
+    background: rgba(255,255,255,0.3);
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.classes-row .class-badge:hover {
+    background: rgba(255,255,255,0.4);
+    transform: scale(1.05);
+}
+
+/* المشرفين والمناوبين الأفقية */
+.horizontal-staff-container {
+    width: 100%;
+    text-align: center;
+}
+
+/* --- ✨ (الحفاظ) شبكة المشرفين كصف أفقي (كما طلبت) --- */
+.horizontal-staff-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* إضافة تمرير أفقي عند الحاجة */
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem; /* مسافة لشريط التمرير */
+}
+
+/* --- ✨ (الحفاظ) عرض بطاقة المشرف --- */
+.horizontal-staff-item {
+    background: rgba(255,255,255,0.1);
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    
+    flex-shrink: 0; /* منع البطاقة من الانكماش */
+    width: 200px; /* عرض ثابت */
+}
+
+.horizontal-staff-item:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-3px);
+}
+
+.horizontal-staff-item .staff-icon {
+    font-size: 2rem; 
+}
+
+.horizontal-staff-item .staff-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.horizontal-staff-item .staff-name {
+    font-weight: 600;
+    font-size: 1.1rem; 
+}
+
+.horizontal-staff-item .staff-role {
+    opacity: 0.8;
+    font-size: 0.9rem; 
+}
+/* --- (نهاية قسم المشرفين) --- */
+
+
+.staff-summary {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.summary-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 120px;
+}
+
+.summary-badge .summary-number {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.summary-badge .summary-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* شريط التمرير المخصص */
+.horizontal-subjects-grid::-webkit-scrollbar,
+.horizontal-staff-grid::-webkit-scrollbar {
+    width: 6px;
+    height: 6px; /* ✨ جعل شريط التمرير الأفقي أنيقاً */
+}
+
+.horizontal-subjects-grid::-webkit-scrollbar-track,
+.horizontal-staff-grid::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+}
+
+.horizontal-subjects-grid::-webkit-scrollbar-thumb,
+.horizontal-staff-grid::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+}
+
+/* رسائل الحالات الخاصة */
+.no-schedule-message,
+.no-class-message,
+.welcome-message,
+.no-staff-message {
+    text-align: center;
+    padding: 2rem;
+}
+
+.message-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.no-schedule-message h3,
+.no-class-message h3,
+.welcome-message h3,
+.no-staff-message h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.hint {
+    opacity: 0.7;
+    font-style: italic;
+}
+
+.next-period {
+    background: rgba(255,255,255,0.2);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.next-icon {
+    font-size: 1.2rem;
+}
+
+/* --- ✨ (تعديل) حذف الأنماط القديمة --- */
+.ticker-controls {
+    display: none;
+}
+#current-period {
+    /* (تم نقل الأنماط) */
+}
+/* --- (نهاية الحذف) --- */
+
+
+/* تذييل الشريط */
+.ticker-footer {
+    background: rgba(0,0,0,0.2);
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* التجاوب للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .header-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    /* (تم حذف .stats-grid-horizontal) */
+    
+    .horizontal-subjects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .horizontal-staff-grid {
+        gap: 0.5rem;
+    }
+    
+    .horizontal-staff-item {
+        padding: 0.5rem;
+        width: 150px; /* تصغير عرض بطاقة المشرف على التابلت */
+    }
+    
+    .ticker-content-wrapper {
+        padding: 1rem;
+    }
+    
+    .day-badge,
+    .period-badge-large,
+    .staff-badge-large {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .staff-summary {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .summary-badge {
+        padding: 0.75rem 1.5rem;
+        min-width: 100px;
+    }
+    
+    .summary-badge .summary-number {
+        font-size: 1.5rem;
+    }
+    
+    /* --- ✨ (تعديل v14) تجاوب الهيدر المدمج --- */
+    .ticker-header-controls {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1rem; /* إضافة هامش سفلي على الجوال */
+    }
+    .ticker-header-controls .section-title {
+        font-size: 1.25rem;
+    }
+    /* (نهاية التعديل) */
+}
+
+@media (max-width: 480px) {
+    .main-ticker-container {
+        border-radius: 10px;
+    }
+    
+    .ticker-header-main {
+        padding: 1rem;
+    }
+    
+    .header-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* (تم حذف .stats-grid-horizontal) */
+    
+    .horizontal-staff-grid {
+        /* (تم إلغاء التعديل ليتناسب مع الصف الأفقي) */
+    }
+    
+    .classes-row {
+        justify-content: center;
+    }
+    
+    .class-badge {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    .subject-name,
+    .staff-name {
+        font-size: 1rem;
+    }
+    
+    .staff-item {
+        padding: 1rem;
+    }
+}
+
+/* --- ✨ (تعديل v16) تحويل الشبكة إلى 5x2 (Flexbox) وتوسيطها --- */
+.class-grid-3x3 {
+    display: flex;
+    flex-wrap: wrap; /* السماح بالالتفاف إلى السطر الثاني */
+    justify-content: center; /* توسيط الصف السفلي تلقائياً */
+    gap: 1rem; /* مسافة جيدة بين البطاقات */
+    padding-bottom: 1rem; 
+}
+
+.class-card-grid {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 0.75rem; /* تكبير الهامش قليلاً */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    
+    /* --- حساب 5 أعمدة --- */
+    flex-basis: 18%; /* 100% / 5 = 20%, ناقص 2% للـ gap */
+    min-width: 150px; /* حد أدنى للعرض */
+    flex-grow: 1;
+    
+    min-height: 100px; /* ارتفاع جيد */
+}
+
+.class-card-grid:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px);
+}
+
+.class-grid-name {
+    font-size: 1.2rem; /* تكبير الخط */
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.class-grid-subject {
+    font-size: 0.9rem; /* تكبير الخط */
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 0.3rem; 
+}
+
+.class-grid-teacher {
+    font-size: 0.9rem; /* تكبير الخط */
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.25rem; 
+}
+/* --- (نهاية تعديل 5x2) --- */
+
+
+/* --- تصميم شعار المدرسة في الشريط --- */
+.ticker-logo {
+    max-height: 50px; 
+    max-width: 150px; 
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px;
+    object-fit: contain; 
+}
+
+/* --- تصميم حصة الانتظار --- */
+.class-card-grid.substitute {
+    background: rgba(255, 235, 59, 0.1); 
+    border-color: rgba(255, 235, 59, 0.3);
+}
+
+.class-card-grid.substitute .class-grid-teacher {
+    color: #FFFFE0; 
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* --- ✨ (تعديل v14) إعادة الهامش الطبيعي للقسم --- */
+.section#ticker .container {
+    padding-top: 2rem; /* إعادة الهامش العلوي للقسم */
+    padding-bottom: 2rem; /* إعادة الهامش السفلي للقسم */
+}
+/* (تم حذف هوامش العنوان والأزرار القديمة) */
+
+
+/* --- ✨ (إضافة v14) تصميم الهيدر المدمج --- */
+.ticker-header-controls {
+    display: flex;
+    justify-content: space-between; /* [Left] [Center] [Right] */
+    align-items: center;
+    margin-bottom: 1rem; /* مسافة صغيرة قبل اللوحة البنفسجية */
+    gap: 1rem;
+    flex-shrink: 0; 
+    background: rgba(255,255,255,0.1); /* خلفية للهيدر المدمج */
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    
+    /* تغيير لون الخط داخل الهيدر المدمج */
+    color: var(--dark-text); 
+}
+
+/* (اليسار) معلومات الحصة */
+.ticker-header-period #current-period {
+    background: rgba(255,255,255,0.2);
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 25px;
+    font-weight: 600;
+    min-width: 150px;
+    text-align: center;
+    color: var(--dark-text); /* لون أغمق للوضوح */
+}
+
+/* (الوسط) العنوان */
+.ticker-header-controls .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 0; /* إلغاء الهامش القديم */
+    flex-grow: 1; 
+    text-align: center;
+    color: var(--dark-text); /* لون أغمق للوضوح */
+}
+
+/* (اليمين) الأزرار */
+.ticker-header-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+.ticker-header-buttons .btn {
+    padding: 0.5rem 0.75rem; /* تصغير الأزرار (أيقونات فقط) */
+    font-size: 1rem;
+}
+/* --- (نهاية إضافة v14) --- */
