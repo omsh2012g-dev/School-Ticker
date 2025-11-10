@@ -660,31 +660,31 @@ class WeeklyScheduleManager {
 
     // دالة للحصول على بيانات الحصة الحالية للشريط الإخباري - معدلة
     getCurrentPeriodData(currentPeriod) {
-        const today = new Date().toLocaleDateString('ar-SA', { weekday: 'long' });
-        const dayIndex = this.getDayIndex(today);
+        // --- ✨ (بداية الإصلاح) ---
+        const dayIndex = new Date().getDay(); // 0=الأحد, 1=الإثنين...
         
-        if (dayIndex === -1) return null; // ليس يوم دراسي
+        // التحقق إذا كان يوم عطلة (الجمعة 5 أو السبت 6)
+        if (dayIndex < 0 || dayIndex > 4) return null; 
         
-        const currentDay = this.days[dayIndex];
+        const currentDay = this.days[dayIndex]; // ex: this.days[1] = "الإثنين"
+        // --- (نهاية الإصلاح) ---
+        
         const periodData = this.schedule[currentDay]?.[currentPeriod];
         
         if (!periodData) return null;
 
-        // --- ✨ (بداية التعديل) ---
-        // جلب بيانات الغياب لليوم
+        // --- (جلب بيانات الغياب لليوم) ---
         const allSubstitutes = JSON.parse(localStorage.getItem('substituteSchedule')) || {};
         const todayString = this.getTodayStringForSub(); // '2025-11-07'
         const todaySubstitutes = allSubstitutes[todayString] || {};
-        // --- (نهاية التعديل) ---
+        // --- (نهاية جلب البيانات) ---
 
         const classesData = [];
-        // (تم حذف منطق usedTeachers لعرض جميع الحصص في الشريط)
         
         this.classes.forEach(className => {
             const classData = periodData[className];
             if (classData && classData.المادة && classData.المعلم) {
                 
-                // --- ✨ (بداية التعديل) ---
                 const originalTeacher = classData.المعلم;
                 let finalTeacher = originalTeacher;
                 let isSubstitute = false;
@@ -704,7 +704,6 @@ class WeeklyScheduleManager {
                     المعلم: finalTeacher, // إرسال المعلم النهائي
                     isSubstitute: isSubstitute // إرسال علامة "انتظار"
                 });
-                // --- (نهاية التعديل) ---
             }
         });
 
@@ -717,12 +716,15 @@ class WeeklyScheduleManager {
 
     // دالة للحصول على بيانات المشرفين والمناوبين لليوم الحالي
     getTodayStaffData() {
-        const today = new Date().toLocaleDateString('ar-SA', { weekday: 'long' });
-        const dayIndex = this.getDayIndex(today);
+        // --- ✨ (بداية الإصلاح) ---
+        const dayIndex = new Date().getDay(); // 0=الأحد, 1=الإثنين...
         
-        if (dayIndex === -1) return null;
+        // التحقق إذا كان يوم عطلة (الجمعة 5 أو السبت 6)
+        if (dayIndex < 0 || dayIndex > 4) return null; 
         
-        const currentDay = this.days[dayIndex];
+        const currentDay = this.days[dayIndex]; // ex: this.days[1] = "الإثنين"
+        // --- (نهاية الإصلاح) ---
+        
         const supervisors = this.supervisors[currentDay] || [];
         const dutyStaff = this.dutyStaff[currentDay] || [];
         
@@ -737,6 +739,7 @@ class WeeklyScheduleManager {
     }
 
     getDayIndex(dayName) {
+        // (هذه الدالة لم نعد نستخدمها لجلب اليوم الحالي، ولكنها قد تستخدم لاحقاً)
         const dayMap = {
             'الأحد': 0,
             'الإثنين': 1,

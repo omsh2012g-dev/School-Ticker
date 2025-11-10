@@ -296,7 +296,20 @@ class AbsenceManager {
         this.scheduleListContainer = document.getElementById('absence-schedule-list');
         
         this.todayString = this.getTodayString(); // '2025-11-07'
-        this.todayDayName = window.dailyManager.getCurrentDayName(); // 'الجمعة' (أو 'الأحد' الخ)
+        
+        // --- ✨ (بداية الإصلاح) ---
+        // (تم حذف السطر القديم الذي يستدعي dailyManager.getCurrentDayName())
+        // نعتمد على رقم اليوم بدلاً من اسمه
+        const todayIndex = new Date().getDay(); // 0=Sun, 1=Mon...
+        
+        // جلب قائمة الأيام الموثوقة من مدير الجدول
+        // (هذا آمن لأن scheduleManager يتم إنشاؤه *قبل* absenceManager)
+        if (window.scheduleManager && window.scheduleManager.days[todayIndex]) {
+            this.todayDayName = window.scheduleManager.days[todayIndex]; // ex: "الإثنين"
+        } else {
+            this.todayDayName = null; // اليوم عطلة (جمعة أو سبت)
+        }
+        // --- (نهاية الإصلاح) ---
 
         this.loadData();
     }
@@ -368,6 +381,11 @@ class AbsenceManager {
 
     // 2. عند الضغط على زر "تسجيل غياب"
     toggleAbsence(teacherName) {
+        if (!this.todayDayName) {
+            window.dailyManager.showNotification('لا يمكن تسجيل غياب في يوم عطلة', 'warning');
+            return;
+        }
+        
         const index = this.dailyAbsences.indexOf(teacherName);
         
         if (index > -1) {
@@ -391,6 +409,11 @@ class AbsenceManager {
 
     // 3. عرض حصص المعلم الغائب في العمود الأيسر
     renderAbsentTeacherSchedule(teacherName) {
+        if (!this.todayDayName) {
+             this.scheduleListContainer.innerHTML = `<div class="empty-state"><p>اليوم عطلة رسمية.</p></div>`;
+             return;
+        }
+        
         const scheduleData = window.scheduleManager.getScheduleData();
         const todaySchedule = scheduleData.schedule[this.todayDayName];
 
